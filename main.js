@@ -10,9 +10,9 @@ var player1 = 'veggies';
 var player2 = 'junkfood';
 var currentPlayer = null;
 var endGame = function () {
-  $('#board').hide();
-  $('#restart').show();
-  $('h3').hide();
+  $('#board').fadeOut(1500);
+  $('#restart').fadeIn(1800);
+  $('h3').text("That was a great game!");
 }
 
 $('#restart').on('click', function (e) {
