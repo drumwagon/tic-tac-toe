@@ -30,7 +30,7 @@ var checkForWinner = function () {
     || spaces[6] === spaces[7] && spaces[7] === spaces[8] //bottom row
     || spaces[0] === spaces[3] && spaces[3] === spaces[6] //1st column
     || spaces[1] === spaces[4] && spaces[4] === spaces[7] //2nd column
-    || spaces[3] === spaces[5] && spaces[5] === spaces[8] //3rd column
+    || spaces[2] === spaces[5] && spaces[5] === spaces[8] //3rd column
     || spaces[0] === spaces[4] && spaces[4] === spaces[8] //top-left diag
     || spaces[6] === spaces[7] && spaces[7] === spaces[8] //top-right diag
     
@@ -39,6 +39,7 @@ var checkForWinner = function () {
   {
     console.log('somebody won');
     // TODO: Trigger 'game-win' event with the winning player as the event data
+    $(document).trigger('game-win', (currentPlayer));
   }
 };
 
@@ -58,6 +59,8 @@ $(document).on('click', '#board .space', function (e) {
 
 $(document).on('game-win', function (e, winner) {
   // TODO: Alert who won the game
+  alert(winner + " won the game!");
+
 });
 
 // Start the game
