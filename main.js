@@ -49,12 +49,16 @@ $(document).on('click', '#board .space', function (e) {
 
   // Mark the space with the current player's name
   // TODO: Don't mark it unless the space is blank
-  spaces[spaceNum] = currentPlayer;
+  if (spaces[spaceNum] === 'veggies' || spaces[spaceNum] === 'junkfood'){
+    alert("That space has been taken! Please try again");
+  } else { 
+    spaces[spaceNum] = currentPlayer;
   // Add class to elem so css can take care of the visuals
   $('#board .space:eq(' + spaceNum + ')').addClass(currentPlayer);
 
   checkForWinner();
   setNextTurn();
+}
 });
 
 $(document).on('game-win', function (e, winner) {
