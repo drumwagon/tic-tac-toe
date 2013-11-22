@@ -4,11 +4,20 @@ var spaces = [
   NaN, NaN, NaN,
   NaN, NaN, NaN,
   NaN, NaN, NaN
-];
+];  
 
 var player1 = 'veggies';
 var player2 = 'junkfood';
 var currentPlayer = null;
+var endGame = function () {
+  $('#board').hide();
+  $('#restart').show();
+  $('h3').hide();
+}
+
+$('#restart').on('click', function (e) {
+      $(document).load();
+    });
 
 var setNextTurn = function () {
   if (currentPlayer === player1) {
@@ -32,15 +41,15 @@ var checkForWinner = function () {
     || spaces[1] === spaces[4] && spaces[4] === spaces[7] //2nd column
     || spaces[2] === spaces[5] && spaces[5] === spaces[8] //3rd column
     || spaces[0] === spaces[4] && spaces[4] === spaces[8] //top-left diag
-    || spaces[6] === spaces[7] && spaces[7] === spaces[8] //top-right diag
+    || spaces[2] === spaces[4] && spaces[4] === spaces[6] //top-right diag
     
     // TODO: Check for rest of game winning cases
   )
   {
     console.log('somebody won');
     // TODO: Trigger 'game-win' event with the winning player as the event data
-    $(document).trigger('game-win', (currentPlayer));
-  }
+    $(document).trigger('game-win', currentPlayer);
+    }
 };
 
 $(document).on('click', '#board .space', function (e) {
@@ -49,7 +58,7 @@ $(document).on('click', '#board .space', function (e) {
 
   // Mark the space with the current player's name
   // TODO: Don't mark it unless the space is blank
-  if (spaces[spaceNum] === 'veggies' || spaces[spaceNum] === 'junkfood'){
+  if (spaces[spaceNum]){
     alert("That space has been taken! Please try again");
   } else { 
     spaces[spaceNum] = currentPlayer;
@@ -58,14 +67,19 @@ $(document).on('click', '#board .space', function (e) {
 
   checkForWinner();
   setNextTurn();
-}
+  }
 });
 
 $(document).on('game-win', function (e, winner) {
   // TODO: Alert who won the game
   alert(winner + " won the game!");
-
+  return endGame();
 });
+
+$(document).on('click', '#restart', function(){
+  location.reload();
+})
 
 // Start the game
 setNextTurn();
+
