@@ -25,9 +25,15 @@ var checkForWinner = function () {
   // that if three spaces in a row are the same, all three spaces are
   // marked by a player, and not all empty.
 
-  if ( spaces[0] === spaces[1] && spaces[1] === spaces[2]
-    || spaces[3] === spaces[4] && spaces[4] === spaces[5]
-    || spaces[6] === spaces[7] && spaces[7] === spaces[8]
+  if ( spaces[0] === spaces[1] && spaces[1] === spaces[2] //top row
+    || spaces[3] === spaces[4] && spaces[4] === spaces[5] //middle row
+    || spaces[6] === spaces[7] && spaces[7] === spaces[8] //bottom row
+    || spaces[0] === spaces[3] && spaces[3] === spaces[6] //1st column
+    || spaces[1] === spaces[4] && spaces[4] === spaces[7] //2nd column
+    || spaces[3] === spaces[5] && spaces[5] === spaces[8] //3rd column
+    || spaces[0] === spaces[4] && spaces[4] === spaces[8] //top-left diag
+    || spaces[6] === spaces[7] && spaces[7] === spaces[8] //top-right diag
+    
     // TODO: Check for rest of game winning cases
   )
   {
